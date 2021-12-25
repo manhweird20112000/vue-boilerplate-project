@@ -1,4 +1,9 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import './index.css';
+import dotenv from 'dotenv';
+import { createPinia } from 'pinia';
 
-createApp(App).mount('#app')
+dotenv.config();
+
+createApp(App).use(createPinia()).mount('#app');
