@@ -1,14 +1,13 @@
 <template>
-	<div class="min-h-screen min-w-full">
-		<characters />
-	</div>
+	<transition name="fade">
+		<router-view></router-view>
+	</transition>
 </template>
 
 <script>
-	import Characters from './components/Characters.vue';
 	export default {
 		name: 'App',
-		components: { Characters },
+		components: {},
 	};
 </script>
 

@@ -19,12 +19,12 @@
     "pinia": "^2.0.9",
     "postcss": "^7",
     "sass": "^1.45.1",
-    "sass-loader": "^12.4.0",
+    "sass-loader": "10",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "vue": "^3.0.0",
     "vue-axios": "^3.4.0",
     "vue-mc": "^0.6.0",
-    "vue-router": "^3.5.3"
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
