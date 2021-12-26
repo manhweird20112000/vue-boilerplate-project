@@ -1,7 +1,10 @@
 <template>
 	<div class="app flex justify-end">
 		<sidebar />
-		<div class="container-view w-5/6" style="background: #d9dbe9">
+		<div
+			class="container-view w-full lg:w-5/6 xl:w-5/6"
+			style="background: #d9dbe9"
+		>
 			<div class="navbar sticky top-0">
 				<navbar />
 			</div>
@@ -21,4 +24,3 @@
 		setup() {},
 	};
 </script>
-
