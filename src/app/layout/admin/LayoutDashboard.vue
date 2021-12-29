@@ -1,10 +1,7 @@
 <template>
 	<div class="app flex justify-end">
 		<sidebar />
-		<div
-			class="container-view w-full lg:w-5/6 xl:w-5/6"
-			style="background: #d9dbe9"
-		>
+		<div class="container-view w-full lg:w-5/6 xl:w-5/6">
 			<div class="navbar sticky top-0">
 				<navbar />
 			</div>
@@ -24,3 +21,21 @@
 		setup() {},
 	};
 </script>
+
+<style lang="scss">
+	@import '../../../assets/scss/variables';
+	.container-view {
+		width: calc(100% - $width-sidebar);
+		background: $background-color;
+	}
+	@media only screen and (min-width: 150px) and (max-width: 767px) {
+		.container-view {
+			width: 100%;
+		}
+	}
+	@media only screen and (min-width: 768px) and (max-width: 1024px) {
+		.container-view {
+			width: calc(100% - $width-sidebar-optional);
+		}
+	}
+</style>

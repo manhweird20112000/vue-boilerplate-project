@@ -1,11 +1,11 @@
 <template>
-	<characters />
+	<breadcrumb title="Dashboard"> xdb </breadcrumb>
 </template>
 <script>
 	import { useThemeStore } from '@/app/store/theme';
-	import Characters from '@/components/Characters.vue';
+	import Breadcrumb from '@/components/Breadcrumb.vue';
 	export default {
-		components: { Characters },
+		components: { Breadcrumb },
 		setup() {
 			const theme = useThemeStore();
 
