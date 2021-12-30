@@ -3,11 +3,13 @@
 		<div
 			class="flex items-center justify-center xl:justify-between w-10/12 mx-auto py-5"
 		>
-			<div class="xl:block hidden">
+			<div class="lg:block xl:block hidden" v-if="sub_ingredients">
 				<p class="text-white text-4xl italic font-bold">LOGO</p>
 			</div>
+
 			<img
-				class="cursor-pointer"
+				@click="changeSidebar"
+				:class="sub_ingredients ? 'cursor-pointer' : 'cursor-pointer mx-auto'"
 				src="../assets/icons/icon_sidebar.svg"
 				alt=""
 			/>
@@ -17,21 +19,26 @@
 			class="flex justify-center mx-auto opacity-25 w-10/12"
 		></div>
 		<div class="my-2">
-			<div v-for="(item, index) in sidebar" :key="index">
+			<div v-for="(item, index) in menu" :key="index">
 				<router-link :to="item.path" v-slot="{ isActive }">
 					<div
-						class="sidebar__item relative flex items-center mx-1 my-1.5 py-2 px-3 rounded-lg"
+						class="sidebar__item relative flex items-center mx-1 my-1.5 py-3 px-3 rounded-lg"
 					>
 						<img :src="isActive ? item.icon_active : item.icon_normal" />
-						<p
-							class="title-link ml-2 text-lg font-normal text-white"
-							v-if="isActive"
-						>
-							{{ item.lable }}
-						</p>
-						<p class="title-link ml-2 text-lg font-normal text-gray-300" v-else>
-							{{ item.lable }}
-						</p>
+						<div v-if="sub_ingredients">
+							<p
+								class="title-link ml-2 text-lg font-normal text-white"
+								v-if="isActive"
+							>
+								{{ item.lable }}
+							</p>
+							<p
+								class="title-link ml-2 text-lg font-normal text-gray-300"
+								v-else
+							>
+								{{ item.lable }}
+							</p>
+						</div>
 						<div
 							v-if="isActive"
 							style="width: 3px; height: 30px"
@@ -45,9 +52,13 @@
 </template>
 <script>
 	import { ref } from 'vue';
+	import { LAYOUT } from '@/app/constants';
 	export default {
-		setup() {
-			const sidebar = ref([
+		emits: ['sidebar'],
+		setup(props, context) {
+			let sidebar = ref(true);
+			let sub_ingredients = ref(true);
+			const menu = ref([
 				{
 					path: '/',
 					lable: 'Dashborad',
@@ -73,7 +84,22 @@
 					icon_active: '../assets/icons/icon_media_active.svg',
 				},
 			]);
-			return { sidebar };
+
+			function changeSidebar() {
+				sidebar.value = !sidebar.value;
+				context.emit('sidebar', sidebar.value);
+				sub_ingredients.value = !sub_ingredients.value;
+
+				if (sidebar.value) {
+					document.getElementById('sidebar').style.width = LAYOUT.widthSidebar;
+				} else {
+					document.getElementById('sidebar').style.width =
+						LAYOUT.widthSidebarOptional;
+				}
+				console.log(sub_ingredients.value);
+			}
+
+			return { sidebar, sub_ingredients, menu, changeSidebar };
 		},
 	};
 </script>
@@ -82,13 +108,14 @@
 	#sidebar {
 		width: $width-sidebar;
 		background: #0061f7;
+		transition: all 0.3s ease-in;
 	}
 	#line-sidebar {
 		height: 2px;
 		background: $border-color;
 	}
 	.sidebar__item {
-		transition: 0.2s all ease-in;
+		transition: 0.1s all ease-in;
 		&:hover {
 			background: rgba($color: #ffffff, $alpha: 0.3);
 		}

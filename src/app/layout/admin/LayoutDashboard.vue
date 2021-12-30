@@ -1,11 +1,11 @@
 <template>
 	<div class="app flex justify-end">
-		<sidebar />
+		<sidebar @sidebar="changeSidebar" />
 		<div class="container-view w-full lg:w-5/6 xl:w-5/6">
 			<div class="navbar sticky top-0">
 				<navbar />
 			</div>
-			<div class="container p-5">
+			<div class="container p-5 w-full">
 				<router-view />
 			</div>
 		</div>
@@ -15,16 +15,29 @@
 <script>
 	import Sidebar from '@/components/Sidebar.vue';
 	import Navbar from '@/components/Navbar.vue';
+	import { LAYOUT } from '@/app/constants';
 
 	export default {
 		components: { Sidebar, Navbar },
-		setup() {},
+		setup() {
+			function changeSidebar(data) {
+				let containerView = document.querySelector('.container-view');
+				if (data) {
+					containerView.style.width = `calc(100% - ${LAYOUT.widthSidebar})`;
+				} else {
+					containerView.style.width = `calc(100% - ${LAYOUT.widthSidebarOptional})`;
+				}
+			}
+
+			return { changeSidebar };
+		},
 	};
 </script>
 
 <style lang="scss">
 	@import '../../../assets/scss/variables';
 	.container-view {
+		transition: all 0.1s ease-in;
 		width: calc(100% - $width-sidebar);
 		background: $background-color;
 	}
