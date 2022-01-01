@@ -1,13 +1,12 @@
 <template>
-	<list-table :fields="fields" :items="items" />
+	<div></div>
 </template>
 <script>
 	import { useThemeStore } from '@/app/store/theme';
 	import { ref } from 'vue';
-	import ListTable from '@/components/ListTable.vue';
 
 	export default {
-		components: { ListTable },
+		components: {},
 		setup() {
 			const fields = ref([
 				{
