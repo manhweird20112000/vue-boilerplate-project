@@ -1,15 +1,34 @@
 <template>
-	<breadcrumb title="Dashboard" v-if="hustlang"> xdb </breadcrumb>
-	<button @click="increment">jhbf</button>
-	{{ hustlang }}
+	<list-table :fields="fields" :items="items" />
 </template>
 <script>
 	import { useThemeStore } from '@/app/store/theme';
-	import Breadcrumb from '@/components/Breadcrumb.vue';
 	import { ref } from 'vue';
+	import ListTable from '@/components/ListTable.vue';
+
 	export default {
-		components: { Breadcrumb },
+		components: { ListTable },
 		setup() {
+			const fields = ref([
+				{
+					key: 'id',
+					lable: 'STT',
+				},
+				{
+					key: 'fullname',
+					lable: 'Họ và tên',
+				},
+				{
+					key: 'action',
+					lable: 'Tùy chỉnh',
+				},
+			]);
+			const items = [
+				{
+					id: 1,
+					fullname: 'Đinh Văn Mạnh',
+				},
+			];
 			const theme = useThemeStore();
 			let hustlang = ref(true);
 
@@ -17,7 +36,7 @@
 				hustlang.value = !hustlang.value;
 			}
 
-			return { increment, theme, hustlang };
+			return { increment, theme, hustlang, items, fields };
 		},
 	};
 </script>

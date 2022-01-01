@@ -5,7 +5,7 @@
 			<div class="navbar sticky top-0">
 				<navbar />
 			</div>
-			<div class="container p-5 w-full">
+			<div class="container p-5 min-w-full">
 				<router-view />
 			</div>
 		</div>
@@ -37,7 +37,7 @@
 <style lang="scss">
 	@import '../../../assets/scss/variables';
 	.container-view {
-		transition: all 0.1s ease-in;
+		transition: all 0.3s ease-in;
 		width: calc(100% - $width-sidebar);
 		background: $background-color;
 	}
