@@ -1,13 +1,19 @@
 <template>
-	<div id="badge" :class="setVariant()">
+	<div id="badge" :class="`${setVariant()} ${setRadius()}`">
 		<p>{{ lable }}</p>
 	</div>
 </template>
 <script>
 	import { BADGE_STATUS } from './constants';
 	export default {
-		props: ['variant', 'lable'],
+		props: ['variant', 'lable', 'radius'],
 		setup(props) {
+			const BADGE_BORDER_RADIUS = {
+				lg: 'lg',
+				sm: 'sm',
+				xl: 'xl',
+				full: 'full',
+			};
 			function setVariant() {
 				switch (props.variant) {
 					case BADGE_STATUS.success:
@@ -20,14 +26,27 @@
 						return BADGE_STATUS.info;
 				}
 			}
-			return { setVariant };
+			function setRadius() {
+				switch (props.radius) {
+					case BADGE_BORDER_RADIUS.lg:
+						return 'rounded-' + BADGE_BORDER_RADIUS.lg;
+					case BADGE_BORDER_RADIUS.sm:
+						return 'rounded-' + BADGE_BORDER_RADIUS.sm;
+					case BADGE_BORDER_RADIUS.xl:
+						return 'rounded-' + BADGE_BORDER_RADIUS.xl;
+					default:
+						'rounded-' + BADGE_BORDER_RADIUS.full;
+				}
+			}
+			return { setVariant, setRadius };
 		},
 	};
 </script>
 <style scoped lang="scss">
 	@import '../assets/scss/variables';
 	#badge {
-		width: 100px;
+		min-width: 100px;
+		max-width: 120px;
 		@apply flex items-center justify-center rounded-full;
 		p {
 			padding: 3px 5px;
