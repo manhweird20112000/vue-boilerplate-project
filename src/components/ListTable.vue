@@ -8,7 +8,14 @@
 					:key="field.lable"
 					:style="`min-width: ${100 / fields.length}%`"
 				>
-					{{ field.lable }}
+					<slot
+						:name="`head-${field.key}`"
+						:data="field"
+						v-if="hasSlotCell(`head-${field.key}`)"
+					></slot>
+					<template v-else>
+						{{ field.lable }}
+					</template>
 				</td>
 			</tr>
 			<tr
@@ -26,7 +33,9 @@
 						:data="item"
 						v-if="hasSlotCell(field.key)"
 					></slot>
-					<div>{{ items[index][`${field.key}`] }}</div>
+					<template v-else>
+						{{ items[index][`${field.key}`] }}
+					</template>
 				</td>
 			</tr>
 		</table>
