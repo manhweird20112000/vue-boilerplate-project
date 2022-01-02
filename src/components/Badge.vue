@@ -1,5 +1,5 @@
 <template>
-	<div id="badge" :class="`${setVariant()} ${setRadius()}`">
+	<div id="badge" :class="`${setVariant()} rounded-full`">
 		<p>{{ lable }}</p>
 	</div>
 </template>

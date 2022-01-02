@@ -11,7 +11,11 @@
 					{{ field.lable }}
 				</td>
 			</tr>
-			<tr class="border-b-2" v-for="(item, index) in items" :key="index">
+			<tr
+				class="border-b-2 cursor-pointer hover:bg-gray-200"
+				v-for="(item, index) in items"
+				:key="index"
+			>
 				<td
 					v-for="field in fields"
 					:key="field.key"
