@@ -1,5 +1,5 @@
 <template>
-	<div id="sidebar" class="fixed top-0 left-0 min-h-screen">
+	<div id="sidebar" class="fixed top-0 left-0 min-h-screen overflow-x-hidden">
 		<div
 			class="flex items-center justify-center xl:justify-between w-10/12 mx-auto py-5"
 		>

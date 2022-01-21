@@ -2,8 +2,11 @@
 	<div
 		id="navbar"
 		style="min-height: 80px"
-		class="bg-white flex justify-end items-center px-4"
+		class="bg-white flex justify-between items-center px-4"
 	>
+		<div class="block bg-gray-400 p-1 rounded-lg" @click="showSidebar">
+			<img width="30" src="../assets/icons/icon_sidebar.svg" alt="" />
+		</div>
 		<div class="flex items-center">
 			<div id="darkmode">
 				<div class="navbar-func">
@@ -26,7 +29,12 @@
 </template>
 <script>
 	export default {
-		setup() {},
+		setup(props, context) {
+			function showSidebar() {
+				context.emit();
+			}
+			return { showSidebar };
+		},
 	};
 </script>
 <style lang="scss">
